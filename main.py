@@ -33,7 +33,10 @@ if st.button("Generate Notes", use_container_width=True):
         #st.write(f"Uploaded file: {uploaded_file.name}")
 
         with st.spinner(text="Loading Your Notes..."):
-            response = model.generate_content("Give me a detail set of notes based off of the following text and images(if any):" + text_extractor(uploaded_file))
+            try:
+                response = model.generate_content("Give me a detail set of notes based off of the following text and images(if any):" + text_extractor(uploaded_file))
+            except Exception as e:
+                st.error(f"An error occured: {e}")
     else:
         st.warning("Please upload a file first")
 
