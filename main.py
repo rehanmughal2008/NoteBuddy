@@ -1,14 +1,18 @@
 import streamlit as st
 from pypdf import PdfReader
 import google.generativeai as genai
+import os
+from dotenv import load_dotenv
 
 #Page config
 st.set_page_config(
     page_title="NoteBuddy",
     page_icon="🎓")
+load_dotenv()
 
 #gemini configuration
-genai.configure(api_key="AIzaSyAMdCrCj6AWR-mqzoEOP4nRBWgQxc0_BW4")
+API_KEY = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 #Project Configuration
